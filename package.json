@@ -43,5 +43,19 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  }
+  },
+  "description": "",
+  "main": "index.js",
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/titanium25/nearest_attractions_front.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/titanium25/nearest_attractions_front/issues"
+  },
+  "homepage": "https://github.com/titanium25/nearest_attractions_front#readme"
 }
