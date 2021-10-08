@@ -3,6 +3,7 @@ import {useLocation} from "react-router-dom";
 import CalcDistance from "../utils/CalcDistance";
 import attDAL from '../adapters/AttDAL';
 import MUIDataTable from "mui-datatables";
+import {API} from "aws-amplify";
 
 const columns = [
     {
@@ -103,17 +104,28 @@ const Attractions = () => {
     const [att, setAtt] = useState([])
 
     useEffect(async () => {
-        const response = await attDAL.getAtt();
-        const z = response
-            .data
-            .map(v => ({
-                ...v, distance: CalcDistance(
-                    [state.location.coordinates.lat, state.location.coordinates.lng],
-                    [v.Coordinates.lat, v.Coordinates.lng]) ^ 0
-            }))
-            .filter(v => v.distance < 40)
-        setAtt(z)
+        // const response = await attDAL.getAtt();
+        await fetchAPI()
+        console.log(att)
     }, [])
+
+    async function fetchAPI(){
+        API.get("attAPI", "/attractions", {})
+            .then(response => {
+                    const z = response
+                        .data
+                        .map(v => ({
+                            ...v, distance: CalcDistance(
+                                [state.location.coordinates.lat, state.location.coordinates.lng],
+                                [v.Coordinates.lat, v.Coordinates.lng]) ^ 0
+                        }))
+                        .filter(v => v.distance < 40)
+                setAtt(z)
+            })
+            .catch(error => {
+                console.log(error.response)
+            })
+    }
 
     return (
         <div>

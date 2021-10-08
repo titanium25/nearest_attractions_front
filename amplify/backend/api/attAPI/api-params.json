@@ -1,0 +1,35 @@
+{
+  "paths": [
+    {
+      "name": "/attractions",
+      "lambdaFunction": "myAPIfunc",
+      "privacy": {
+        "open": true
+      },
+      "policyResourceName": "/attractions"
+    }
+  ],
+  "resourceName": "attAPI",
+  "apiName": "attAPI",
+  "functionArns": [
+    {
+      "lambdaFunction": "myAPIfunc"
+    }
+  ],
+  "privacy": {
+    "auth": 0,
+    "unauth": 0,
+    "authRoleName": "amplify-attractionsapi-dev-140248-authRole",
+    "unAuthRoleName": "amplify-attractionsapi-dev-140248-unauthRole"
+  },
+  "dependsOn": [
+    {
+      "category": "function",
+      "resourceName": "myAPIfunc",
+      "attributes": [
+        "Name",
+        "Arn"
+      ]
+    }
+  ]
+}
